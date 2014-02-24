@@ -1,7 +1,33 @@
 T2 Big Data Hackathon Soruları
 =================
 
-**Açıklamalar:**
+Yapılması gerekenler
+-----------
+
+**1.** Projeyi Git ([http://git-scm.com/)](http://git-scm.com/)) kullanarak `git clone https://github.com/serkan-ozal/t2-hackathon-answers.git` komutu ile yada proje sayfasında sağ alt tarafta bulunan **Download Zip** ile çekebilirsiniz. 
+
+**2.** `pom.xml` dosyasında bulunan 
+
+~~~
+<aws.accessKey>[Your AWS Access Key]</aws.accessKey>
+<aws.secretKey>[Your AWS Secret Key]</aws.secretKey>
+<aws.accountNo>[Your AWS Account No]</aws.accountNo>
+~~~
+
+kısımında kendi hesabınıza ait değerleri girmelisiniz. [https://portal.aws.amazon.com/gp/aws/securityCredentials?)](https://portal.aws.amazon.com/gp/aws/securityCredentials?) adresinde bulunan **Access Credentials** bölümünde bulunan **Create a new Access Key** ile kendinize ait credentials yaratabilirsiniz. Bu credentials dosyasının içinde size ait AWS **Access Key** ve **Secret Key** bulunmaktadır.
+
+**3.** Projeyi derlemek, build etmek ve deploy etmek için Maven ([http://maven.apache.org/](http://maven.apache.org/)) gereklidir. Maven'ın nasıl kullanılacaği ile ilgili bilgiyi [http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) adresinden bulabilirsiniz.
+
+Projeyi build etmek için gerekli komutlar proje dizinindeki `build.sh` dosyasında, deploy etmek için gerekli komutlar da `deploy.sh` dosyasında bulunmaktadır.
+
+Deploy sonucu size ait olan Map/Reduce job jar dosyası `t2-hackathon-answers-[Your AWS Account No]` dizininde oluşacaktır. Bu dizini deploy yapmadan önce oluşturmanız gerekmektedir. Bu dizini [https://console.aws.amazon.com/s3](https://console.aws.amazon.com/s3) adresinden **S3** üzerinde **Create Bucket** diyerek oluşturabilirsiniz.
+
+**4.** Map/Reduce job'ını nasıl başlatacağınız ile ilgili gerekli bilgiyi [http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-launch-custom-jar-cli.html](http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-launch-custom-jar-cli.html) adresinden bulabilirsiniz.
+
+**5.** Çözümler Hadoop 2 - YARN ile yapıldığı için Map/Reduce job jar'ını AWS üstünde **AMI version 3.0.3** ve **Hadoop version 2.2.0** ile çalıştırmanız gerekmektedir.
+
+Açıklamalar
+-----------
 
 **[1].** Tüm Map/Reduce uygulamaları girdi verisi dizinini ve çıktı verisi dizinini programlarına argüman olarak alacaktır.
 
@@ -45,8 +71,14 @@ Herkesin kendi dizinlerinin altında **answers** ve **src** diye alt dizinler va
 
 **[12].** Çözümlerinizi ([https://github.com/serkan-ozal/t2-hackathon-mapreduce](https://github.com/serkan-ozal/t2-hackathon-mapreduce)) örneğinde olduğu gibi Hadoop 2 - YARN ile yapacaksanız Map/Reduce job jar'ını AWS üstünde **AMI version 3.0.3** ve **Hadoop version 2.2.0** ile çalıştırmanız gerekmektedir. Fakat bu konfigürasyonlar ile job'i web console'dan en düşük **Medium** instance tipi ile çalıştırabilirsiniz. Bu instance tipi ile de 9 soru için AWS krediniz muhtemelen yetmeyecektir. Bu sebeple bunları **Small** instance tipi ile çalıştırmanız önerilir. Bu konfigürasyonlar ile job'un **Small** instance tipi ile çalıştırılmasına AWS web console'dan izin vermese de Rest API ve SDK API (Java, .NET, ...) ile izin vermektedir. Bu sebeple [http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-spot-instances.html](http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-spot-instances.html) dökümanı ve altındaki bağlantılı dökümanları incelemeniz kesinlikle önerilir.
 
+**[13].** Soruların örnek veriler üstündeki cevaplarına `https://s3.amazonaws.com/t2-hackathon-sampleanswers/<soru_no>/output.txt` adresinden erişilebilir. Örneğin 1. sorunun örnek veriler üstündeki cevabına [https://s3.amazonaws.com/t2-hackathon-sampleanswers/1/output.txt](https://s3.amazonaws.com/t2-hackathon-sampleanswers/1/output.txt) adresinden erişilebilir.
 
-**Örnek veri:**
+**[14].** Soruların gerçek veriler üstündeki cevaplarına `https://s3.amazonaws.com/t2-hackathon-answers/<soru_no>/output.txt` adresinden erişilebilir. Örneğin 1. sorunun gerçek veriler üstündeki cevabına [https://s3.amazonaws.com/t2-hackathon-answers/1/output.txt](https://s3.amazonaws.com/t2-hackathon-answers/1/output.txt) adresinden erişilebilir.
+
+
+
+Örnek veri
+-----------
 
 [https://s3.amazonaws.com/t2-bigdata-hackathon-sampledata/Sample_Data.txt](https://s3.amazonaws.com/t2-bigdata-hackathon-sampledata/Sample_Data.txt) linkinden yaklaşık 150 MB'lık örnek veriye ulaşabilirsiniz.
 
@@ -178,6 +210,9 @@ Herkesin kendi dizinlerinin altında **answers** ve **src** diye alt dizinler va
 		]
 	}
 }
+
+Sorular
+-----------
 
 Soru-1 [10 Puan]
 -----------
