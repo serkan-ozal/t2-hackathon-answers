@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="T2-hackathon-answers : T2 Big Data Hackathon Soruları ve Çözümleri" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>T2-hackathon-answers</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/serkan-ozal/t2-hackathon-answers">View on GitHub</a>
+
+          <h1 id="project_title">T2-hackathon-answers</h1>
+          <h2 id="project_tagline">T2 Big Data Hackathon Soruları ve Çözümleri</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/serkan-ozal/t2-hackathon-answers/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/serkan-ozal/t2-hackathon-answers/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="t2-big-data-hackathon-sorular%C4%B1" class="anchor" href="#t2-big-data-hackathon-sorular%C4%B1"><span class="octicon octicon-link"></span></a>T2 Big Data Hackathon Soruları</h1>
+
+<h2>
+<a name="yap%C4%B1lmas%C4%B1-gerekenler" class="anchor" href="#yap%C4%B1lmas%C4%B1-gerekenler"><span class="octicon octicon-link"></span></a>Yapılması gerekenler</h2>
+
+<p><strong>1.</strong> Projeyi Git (<a href="http://git-scm.com/">http://git-scm.com/)</a>) kullanarak <code>git clone https://github.com/serkan-ozal/t2-hackathon-answers.git</code> komutu ile yada proje sayfasında sağ alt tarafta bulunan <strong>Download Zip</strong> ile çekebilirsiniz. </p>
+
+<p><strong>2.</strong> <code>pom.xml</code> dosyasında bulunan </p>
+
+<pre><code>&lt;aws.accessKey&gt;[Your AWS Access Key]&lt;/aws.accessKey&gt;
+&lt;aws.secretKey&gt;[Your AWS Secret Key]&lt;/aws.secretKey&gt;
+&lt;aws.accountNo&gt;[Your AWS Account No]&lt;/aws.accountNo&gt;
+</code></pre>
+
+<p>kısımında kendi hesabınıza ait değerleri girmelisiniz. <a href="https://portal.aws.amazon.com/gp/aws/securityCredentials?">https://portal.aws.amazon.com/gp/aws/securityCredentials?)</a> adresinde bulunan <strong>Access Credentials</strong> bölümünde bulunan <strong>Create a new Access Key</strong> ile kendinize ait credentials yaratabilirsiniz. Bu credentials dosyasının içinde size ait AWS <strong>Access Key</strong> ve <strong>Secret Key</strong> bulunmaktadır.</p>
+
+<p><strong>3.</strong> Projeyi derlemek, build etmek ve deploy etmek için Maven (<a href="http://maven.apache.org/">http://maven.apache.org/</a>) gereklidir. Maven'ın nasıl kullanılacaği ile ilgili bilgiyi <a href="http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html">http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html</a> adresinden bulabilirsiniz.</p>
+
+<p>Projeyi build etmek için gerekli komutlar proje dizinindeki <code>build.sh</code> dosyasında, deploy etmek için gerekli komutlar da <code>deploy.sh</code> dosyasında bulunmaktadır.</p>
+
+<p>Deploy sonucu size ait olan Map/Reduce job jar dosyası <code>t2-hackathon-answers-[Your AWS Account No]</code> dizininde oluşacaktır. Bu dizini deploy yapmadan önce oluşturmanız gerekmektedir. Bu dizini <a href="https://console.aws.amazon.com/s3">https://console.aws.amazon.com/s3</a> adresinden <strong>S3</strong> üzerinde <strong>Create Bucket</strong> diyerek oluşturabilirsiniz.</p>
+
+<p><strong>4.</strong> Map/Reduce job'ını nasıl başlatacağınız ile ilgili gerekli bilgiyi <a href="http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-launch-custom-jar-cli.html">http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-launch-custom-jar-cli.html</a> adresinden bulabilirsiniz.</p>
+
+<p><strong>5.</strong> Çözümler Hadoop 2 - YARN ile yapıldığı için Map/Reduce job jar'ını AWS üstünde <strong>AMI version 3.0.3</strong> ve <strong>Hadoop version 2.2.0</strong> ile çalıştırmanız gerekmektedir.</p>
+
+<h2>
+<a name="a%C3%A7%C4%B1klamalar" class="anchor" href="#a%C3%A7%C4%B1klamalar"><span class="octicon octicon-link"></span></a>Açıklamalar</h2>
+
+<p><strong>[1].</strong> Tüm Map/Reduce uygulamaları girdi verisi dizinini ve çıktı verisi dizinini programlarına argüman olarak alacaktır.</p>
+
+<p><strong>[2].</strong> 1. parametre olan girdi verisi dizini işlenecek tweet verilerini tutan dizindir ve burada içinde tweet verisi tutan binlerce dosya bulunmaktadır. Uygulamalarda bu dizinde bulunan tüm dosyalardaki veriler incelenecektir. </p>
+
+<p><strong>[3].</strong> Yaklaşık <strong>100'er GB</strong> lık gerçek girdi verisi <code>s3n://t2-hackathon-question-data/&lt;soru_no&gt;</code> dizinlerinde bulunmaktadır. Örneğin 1. sorunun veri seti <code>s3n://t2-hackathon-question-data/1</code> dizinindeki tüm dosyalardır.</p>
+
+<p><strong>[4].</strong> Yaklaşık <strong>300 MB</strong> lık örnek girdi verisi <code>s3n://t2-hackathon-question-sampledata/&lt;soru_no&gt;</code> dizinlerinde bulunmaktadır. Örneğin 1. sorunun örnek veri seti <code>s3n://t2-hackathon-question-sampledata/1</code> dizinindeki tüm dosyalardır.</p>
+
+<p><strong>[5].</strong> 2. parametre olan çıktı verisi dizinini çalışan Map/Reduce uygulamasının sonucunun yazıldığı dizindir.</p>
+
+<p><strong>[6].</strong> Çözdüğünüz soruların cevaplarını e-mail adreslerinize mail olarak gönderilen kullanıcı adı ve şifre ile <a href="https://t2-bigdata-hackathon.signin.aws.amazon.com/console">https://t2-bigdata-hackathon.signin.aws.amazon.com/console</a> adresinden giriş yaparak kendi dizininize yüklemeniz gerekmektedir. AWS bilgilerini gönderip hala mail alamayan arkadaşlar lütfen benim ile (<a href="mailto:serkan.ozal@t2.com.tr">serkan.ozal@t2.com.tr</a>) iletişime geçsinler. </p>
+
+<p>Bu dizinler code-challenge kısmına katılan arkadaşların cevaplarını ve kaynak kodlarını upload edecekleri dizinler. Değerlerndirmeyi yaparken bizler bu dizinleri kullanacağız. Herkes sadece kendi dizinlerine girebilir. </p>
+
+<p>Herkesin kendi dizinlerinin altında <strong>answers</strong> ve <strong>src</strong> diye alt dizinler var. Sonuçlarınızı <strong>answers</strong> dizini altına soru numarası ile, o soru için çözümünüzü (kaynak kod, script, vs) ise <strong>src</strong> dizini altına soru numarası ile upload etmeniz gerekecek.</p>
+
+<p><strong>[7].</strong> Her yarışmacının çıktı verisi <code>s3n://t2-bigdata-hackathon-&lt;account_no&gt;</code> dizininde bulunacaktır. Bu dizinler yarışma öncesi bizim tarafımızdan yaratılmıştır. Buradaki <strong>account_no</strong> değeri size özeldir ve sadece siz ve bizler tarafından erişilebilmektedir. Tüm sonuç dosyaları size özel çıktı verisi dizini altında <code>answers/&lt;soru_no&gt;/output.txt</code> dosyasında bulunacaktır. Örneğin sizin hesap numaranız <strong>1234-5678-9000</strong> olsun. Bu durumda sizin 1. soru için olan cevabınız <code>s3n://t2-bigdata-hackathon-1234-5678-9000/answers/1/output.txt</code> dosyasında bulunmalıdır.</p>
+
+<p><strong>[8].</strong> Soruların örnek girdi verisi üstündeki sonuçları <code>s3n://t2-hackathon-sampleanswers</code> altında bulunmaktadır. Örneğin 1. sorunun örnek veri seti üstündeki sonucu <code>s3n://t2-hackathon-sampleanswers/1/output.txt</code> dosyasında bulunmaktadır ve <a href="https://s3.amazonaws.com/t2-hackathon-sampleanswers/1/output.txt">https://s3.amazonaws.com/t2-hackathon-sampleanswers/1/output.txt</a> linki ile ulaşılabilmektedir. Uygulamalarınızı önce örnek veri seti üstünde çalıştırıp sonuçlarınızı bu örnek veri setinin cevapları ile karşılaştırmanız önerilir.</p>
+
+<p><strong>[9].</strong> JSON formatındaki tweet verilerini nesne yapısına dönüştürmek için,</p>
+
+<p><strong>[9.1].</strong> Maven dependency olarak kullanmak isteyenler kendi <code>pom.xml</code>'lerine aşağıdaki dependency'yi ekleyebilirler.</p>
+
+<blockquote>
+<div class="highlight highlight-xml"><pre>    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.twitter4j<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>twitter4j-core<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>3.0.3<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</blockquote>
+
+<p><strong>[9.2].</strong> External library olarak kullanmak isteyenler, <a href="http://repo1.maven.org/maven2/org/twitter4j/twitter4j-core/3.0.3/twitter4j-core-3.0.3.jar">http://repo1.maven.org/maven2/org/twitter4j/twitter4j-core/3.0.3/twitter4j-core-3.0.3.jar</a> adresinden ilgili library'yi indirebilirler.</p>
+
+<p><strong>[10].</strong> JSON verisini gerekli nesne yapısına dönüştürmek için aşağıdaki kod parçacığını örnek olarak kullanabilirsiniz.</p>
+
+<blockquote>
+<div class="highlight highlight-java"><pre>    <span class="n">twitter4j</span><span class="o">.</span><span class="na">Status</span> <span class="n">status</span> <span class="o">=</span> <span class="n">twitter4j</span><span class="o">.</span><span class="na">json</span><span class="o">.</span><span class="na">DataObjectFactory</span><span class="o">.</span><span class="na">createStatus</span><span class="o">(</span><span class="n">jsonString</span><span class="o">);</span>
+</pre></div>
+</blockquote>
+
+<p><strong>[11].</strong> Yarışmada her kullanıcıya <strong>50$</strong>'lık AWS kredisi sağlanacaktır. Soruları çözerken bu miktarın yeterli olması için <a href="http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-spot-instances.html">AWS EMR Spot instance</a> kullanmanız <strong>kesinlikle</strong> önerilir.</p>
+
+<p><strong>[12].</strong> Çözümlerinizi (<a href="https://github.com/serkan-ozal/t2-hackathon-mapreduce">https://github.com/serkan-ozal/t2-hackathon-mapreduce</a>) örneğinde olduğu gibi Hadoop 2 - YARN ile yapacaksanız Map/Reduce job jar'ını AWS üstünde <strong>AMI version 3.0.3</strong> ve <strong>Hadoop version 2.2.0</strong> ile çalıştırmanız gerekmektedir. Fakat bu konfigürasyonlar ile job'i web console'dan en düşük <strong>Medium</strong> instance tipi ile çalıştırabilirsiniz. Bu instance tipi ile de 9 soru için AWS krediniz muhtemelen yetmeyecektir. Bu sebeple bunları <strong>Small</strong> instance tipi ile çalıştırmanız önerilir. Bu konfigürasyonlar ile job'un <strong>Small</strong> instance tipi ile çalıştırılmasına AWS web console'dan izin vermese de Rest API ve SDK API (Java, .NET, ...) ile izin vermektedir. Bu sebeple <a href="http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-spot-instances.html">http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-spot-instances.html</a> dökümanı ve altındaki bağlantılı dökümanları incelemeniz kesinlikle önerilir.</p>
+
+<p><strong>[13].</strong> Soruların örnek veriler üstündeki cevaplarına <code>https://s3.amazonaws.com/t2-hackathon-sampleanswers/&lt;soru_no&gt;/output.txt</code> adresinden erişilebilir. Örneğin <strong>1.</strong> sorunun örnek veriler üstündeki cevabına <a href="https://s3.amazonaws.com/t2-hackathon-sampleanswers/1/output.txt">https://s3.amazonaws.com/t2-hackathon-sampleanswers/1/output.txt</a> adresinden erişilebilir.</p>
+
+<p><strong>[14].</strong> Soruların gerçek veriler üstündeki cevaplarına <code>https://s3-us-west-2.amazonaws.com/t2-bigdata-hackathon-answers/&lt;soru_no&gt;/output.txt</code> adresinden erişilebilir. Örneğin <strong>1.</strong> sorunun gerçek veriler üstündeki cevabına <a href="https://s3-us-west-2.amazonaws.com/t2-bigdata-hackathon-answers/1/output.txt">https://s3-us-west-2.amazonaws.com/t2-bigdata-hackathon-answers/1/output.txt</a> adresinden erişilebilir.</p>
+
+<h2>
+<a name="%C3%96rnek-veri" class="anchor" href="#%C3%96rnek-veri"><span class="octicon octicon-link"></span></a>Örnek veri</h2>
+
+<p><a href="https://s3.amazonaws.com/t2-bigdata-hackathon-sampledata/Sample_Data.txt">https://s3.amazonaws.com/t2-bigdata-hackathon-sampledata/Sample_Data.txt</a> linkinden yaklaşık 150 MB'lık örnek veriye ulaşabilirsiniz.</p>
+
+<blockquote>
+<div class="highlight highlight-json"><pre><span class="p">{</span>
+    <span class="nt">"filter_level"</span><span class="p">:</span><span class="s2">"medium"</span><span class="p">,</span>
+    <span class="nt">"contributors"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+    <span class="nt">"text"</span><span class="p">:</span><span class="s2">"@ItbCruz: Aç değilim ama acıkmak istiyorum yemek, yemek istiyorum"</span><span class="p">,</span>
+    <span class="nt">"geo"</span><span class="p">:{</span>
+        <span class="nt">"type"</span><span class="p">:</span><span class="s2">"Point"</span><span class="p">,</span>
+        <span class="nt">"coordinates"</span><span class="p">:[</span>
+            <span class="mf">41.01536547</span><span class="p">,</span>
+            <span class="mf">29.23015032</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">"retweeted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+    <span class="nt">"in_reply_to_screen_name"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+    <span class="nt">"truncated"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+    <span class="nt">"lang"</span><span class="p">:</span><span class="s2">"tr"</span><span class="p">,</span>
+    <span class="nt">"entities"</span><span class="p">:{</span>
+        <span class="nt">"symbols"</span><span class="p">:[</span>
+        <span class="p">],</span>
+        <span class="nt">"urls"</span><span class="p">:[</span>
+        <span class="p">],</span>
+        <span class="nt">"hashtags"</span><span class="p">:[</span>
+        <span class="p">],</span>
+        <span class="nt">"user_mentions"</span><span class="p">:[</span>
+            <span class="p">{</span>
+                <span class="nt">"id"</span><span class="p">:</span><span class="mi">1367863476</span><span class="p">,</span>
+                <span class="nt">"name"</span><span class="p">:</span><span class="s2">"ALI"</span><span class="p">,</span>
+                <span class="nt">"indices"</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span>
+                <span class="nt">"screen_name"</span><span class="p">:</span><span class="s2">"ItbCruz"</span><span class="p">,</span>
+                <span class="nt">"id_str"</span><span class="p">:</span><span class="s2">"1367863476"</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">"in_reply_to_status_id_str"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+    <span class="nt">"id"</span><span class="p">:</span><span class="mi">427195214810595329</span><span class="p">,</span>
+    <span class="nt">"source"</span><span class="p">:</span><span class="s2">"&lt;a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\"&gt;Twitter for iPhone&lt;\/a&gt;"</span><span class="p">,</span>
+    <span class="nt">"in_reply_to_user_id_str"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+    <span class="nt">"favorited"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+    <span class="nt">"in_reply_to_status_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+    <span class="nt">"retweet_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"Sat Jan 25 21:44:10 +0000 2014"</span><span class="p">,</span>
+    <span class="nt">"in_reply_to_user_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+    <span class="nt">"favorite_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="nt">"id_str"</span><span class="p">:</span><span class="s2">"427195214810595329"</span><span class="p">,</span>
+    <span class="nt">"place"</span><span class="p">:{</span>
+        <span class="nt">"id"</span><span class="p">:</span><span class="s2">"682c5a667856ef42"</span><span class="p">,</span>
+        <span class="nt">"bounding_box"</span><span class="p">:{</span>
+            <span class="nt">"type"</span><span class="p">:</span><span class="s2">"Polygon"</span><span class="p">,</span>
+            <span class="nt">"coordinates"</span><span class="p">:[</span>
+                <span class="p">[</span>
+                    <span class="p">[</span>
+                        <span class="mf">25.663883</span><span class="p">,</span>
+                        <span class="mf">35.817497</span>
+                    <span class="p">],</span>
+                    <span class="p">[</span>
+                        <span class="mf">25.663883</span><span class="p">,</span>
+                        <span class="mf">42.109993</span>
+                    <span class="p">],</span>
+                    <span class="p">[</span>
+                        <span class="mf">44.822762</span><span class="p">,</span>
+                        <span class="mf">42.109993</span>
+                    <span class="p">],</span>
+                    <span class="p">[</span>
+                        <span class="mf">44.822762</span><span class="p">,</span>
+                        <span class="mf">35.817497</span>
+                    <span class="p">]</span>
+                <span class="p">]</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">"place_type"</span><span class="p">:</span><span class="s2">"country"</span><span class="p">,</span>
+        <span class="nt">"contained_within"</span><span class="p">:[</span>
+        <span class="p">],</span>
+        <span class="nt">"name"</span><span class="p">:</span><span class="s2">"Türkiye"</span><span class="p">,</span>
+        <span class="nt">"attributes"</span><span class="p">:{</span>
+        <span class="p">},</span>
+        <span class="nt">"country_code"</span><span class="p">:</span><span class="s2">"TR"</span><span class="p">,</span>
+        <span class="nt">"url"</span><span class="p">:</span><span class="s2">"https://api.twitter.com/1.1/geo/id/682c5a667856ef42.json"</span><span class="p">,</span>
+        <span class="nt">"country"</span><span class="p">:</span><span class="s2">"Türkiye"</span><span class="p">,</span>
+        <span class="nt">"full_name"</span><span class="p">:</span><span class="s2">"Türkiye"</span>
+    <span class="p">},</span>
+    <span class="nt">"user"</span><span class="p">:{</span>
+        <span class="nt">"location"</span><span class="p">:</span><span class="s2">"Turkey Istanbul"</span><span class="p">,</span>
+        <span class="nt">"default_profile"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+        <span class="nt">"profile_background_tile"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+        <span class="nt">"statuses_count"</span><span class="p">:</span><span class="mi">9679</span><span class="p">,</span>
+        <span class="nt">"lang"</span><span class="p">:</span><span class="s2">"tr"</span><span class="p">,</span>
+        <span class="nt">"profile_link_color"</span><span class="p">:</span><span class="s2">"E70009"</span><span class="p">,</span>
+        <span class="nt">"profile_banner_url"</span><span class="p">:</span><span class="s2">"https://pbs.twimg.com/profile_banners/180525314/1388595872"</span><span class="p">,</span>
+        <span class="nt">"id"</span><span class="p">:</span><span class="mi">180525314</span><span class="p">,</span>
+        <span class="nt">"following"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+        <span class="nt">"protected"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+        <span class="nt">"favourites_count"</span><span class="p">:</span><span class="mi">267</span><span class="p">,</span>
+        <span class="nt">"profile_text_color"</span><span class="p">:</span><span class="s2">"828282"</span><span class="p">,</span>
+        <span class="nt">"description"</span><span class="p">:</span><span class="s2">"Bir kişiyi zayıflıkları ile yargılamak okyanusun gücünü tek bir dalgayla ölçmeye benzer. King Elvis and Magic Chef\nMessageMe pin: DB812VJY"</span><span class="p">,</span>
+        <span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+        <span class="nt">"contributors_enabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+        <span class="nt">"profile_sidebar_border_color"</span><span class="p">:</span><span class="s2">"000000"</span><span class="p">,</span>
+        <span class="nt">"name"</span><span class="p">:</span><span class="s2">"Doğukan Kurhan"</span><span class="p">,</span>
+        <span class="nt">"profile_background_color"</span><span class="p">:</span><span class="s2">"000000"</span><span class="p">,</span>
+        <span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"Thu Aug 19 21:12:44 +0000 2010"</span><span class="p">,</span>
+        <span class="nt">"default_profile_image"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+        <span class="nt">"followers_count"</span><span class="p">:</span><span class="mi">613</span><span class="p">,</span>
+        <span class="nt">"profile_image_url_https"</span><span class="p">:</span><span class="s2">"https://pbs.twimg.com/profile_images/378800000539828532/88d95142ca3c6a120ae29aed9cc1a468_normal.jpeg"</span><span class="p">,</span>
+        <span class="nt">"geo_enabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+        <span class="nt">"profile_background_image_url"</span><span class="p">:</span><span class="s2">"http://a0.twimg.com/profile_background_images/378800000090042106/9f2fc371083b37c2c1c63aaf6b88349d.jpeg"</span><span class="p">,</span>
+        <span class="nt">"profile_background_image_url_https"</span><span class="p">:</span><span class="s2">"https://si0.twimg.com/profile_background_images/378800000090042106/9f2fc371083b37c2c1c63aaf6b88349d.jpeg"</span><span class="p">,</span>
+        <span class="nt">"follow_request_sent"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+        <span class="nt">"url"</span><span class="p">:</span><span class="s2">"http://instagram.com/dogukankurhan"</span><span class="p">,</span>
+        <span class="nt">"utc_offset"</span><span class="p">:</span><span class="mi">-18000</span><span class="p">,</span>
+        <span class="nt">"time_zone"</span><span class="p">:</span><span class="s2">"Quito"</span><span class="p">,</span>
+        <span class="nt">"notifications"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+        <span class="nt">"profile_use_background_image"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+        <span class="nt">"friends_count"</span><span class="p">:</span><span class="mi">232</span><span class="p">,</span>
+        <span class="nt">"profile_sidebar_fill_color"</span><span class="p">:</span><span class="s2">"0F0F0F"</span><span class="p">,</span>
+        <span class="nt">"screen_name"</span><span class="p">:</span><span class="s2">"dogukankurhan"</span><span class="p">,</span>
+        <span class="nt">"id_str"</span><span class="p">:</span><span class="s2">"180525314"</span><span class="p">,</span>
+        <span class="nt">"profile_image_url"</span><span class="p">:</span><span class="s2">"http://pbs.twimg.com/profile_images/378800000539828532/88d95142ca3c6a120ae29aed9cc1a468_normal.jpeg"</span><span class="p">,</span>
+        <span class="nt">"listed_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+        <span class="nt">"is_translator"</span><span class="p">:</span><span class="kc">false</span>
+    <span class="p">},</span>
+    <span class="nt">"coordinates"</span><span class="p">:{</span>
+        <span class="nt">"type"</span><span class="p">:</span><span class="s2">"Point"</span><span class="p">,</span>
+        <span class="nt">"coordinates"</span><span class="p">:[</span>
+            <span class="mf">29.23015032</span><span class="p">,</span>
+            <span class="mf">41.01536547</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</blockquote>
+
+<h2>
+<a name="sorular" class="anchor" href="#sorular"><span class="octicon octicon-link"></span></a>Sorular</h2>
+
+<h2>
+<a name="soru-1-10-puan" class="anchor" href="#soru-1-10-puan"><span class="octicon octicon-link"></span></a>Soru-1 [10 Puan]</h2>
+
+<p><code>s3n://t2-hackathon-question-data/1</code> dizini altında bulunan tüm tweetler incelenerek ülke kodları ve bunların kaç tane geçtiğini bulan bir Map/Reduce uygulamasını yazınız. </p>
+
+<p><strong>Açıklamalar:</strong></p>
+
+<ol>
+<li>Ülke kodu alanı tweet datasındaki <code>place</code> alanının içindeki <code>country_code</code> değeridir. </li>
+<li>Ülke kodu değeri 2 karakterlidir ve <code>country_code</code> değeri boş olan tweetlerin <code>country_code</code> değeri <code>??</code> olarak kabul edilecektir. </li>
+<li>Çıktıda her satırda ülke kodu ve bu ülke kodunun kaç kere geçtiği bilgisi olacaktır. </li>
+<li>Çıktıdaki ülke kodu ve sıklık değeri arasında bir tane <strong>boşluk</strong> olacaktır. </li>
+<li>Satırlar ülke kodlarının string değerlerine göre <strong>küçükten büyüğe</strong> göre <strong>artan</strong> sırada olacaktır.</li>
+<li>Örnek girdi verisi <code>s3n://t2-hackathon-question-sampledata/1</code> dizininde, çıktı ise <code>s3n://t2-hackathon-sampleanswers/1/output.txt</code> dosyasında mevcuttur.</li>
+</ol><p><strong>Örnek çıktı:</strong></p>
+
+<pre><code>?? 19682
+...
+GB 24643
+...
+TR 30881
+...
+</code></pre>
+
+<h2>
+<a name="soru-2-15-puan" class="anchor" href="#soru-2-15-puan"><span class="octicon octicon-link"></span></a>Soru-2 [15 Puan]</h2>
+
+<p><code>s3n://t2-hackathon-question-data/2</code> dizini altındaki tüm binary dosyalar <strong>16</strong> byte'lık sabit büyüklükte binary kayıtlar içermektedir. Bu kayıtlar <strong>8 byte</strong>'lık (long) <strong>grup bilgisi</strong> ve <strong>8 byte</strong>'lık (long) <strong>miktar bilgisi</strong> içermektedir. Bu kayıtları inceleyerek her gruptaki toplam miktarı grup numaralarına göre sıralı olarak bulan bir Map/Reduce uygulamasını yazınız. </p>
+
+<p><strong>Açıklamalar:</strong></p>
+
+<ol>
+<li>
+<strong>8 byte</strong>'lık (long) grup bilgisi ve <strong>8 byte</strong>'lık (long) miktar bilgisi <strong>Big Endian</strong> biçimindedir.</li>
+<li>Girdi verisinde kayıtlar arasında <strong>newline</strong> yada <strong>boşluk</strong> yoktur.</li>
+<li>Çıktıda her satırda grup numarası ve bu grup numarasına ait toplam miktar bilgisi olacaktır. </li>
+<li>Çıktıdaki grup numarası ve miktar bilgisi arasında bir tane <strong>boşluk</strong> olacaktır. </li>
+<li>Satırlar grup numaralarına göre <strong>küçükten büyüğe</strong> göre <strong>artan</strong> sırada olacaktır.</li>
+<li>Örnek girdi verisi <code>s3n://t2-hackathon-question-sampledata/2/input.txt</code> dosyasında, çıktı ise <code>s3n://t2-hackathon-sampleanswers/2/output.txt</code> dosyasında mevcuttur.</li>
+</ol><p><strong>İpucu:</strong></p>
+
+<p>Verileri okumak için Hadoop'a özel kendi <code>InputFormat</code> ve <code>RecordReader</code> gerçekleştirimlerinizi yazmanız gerekmektedir.</p>
+
+<p><strong>Örnek çıktı:</strong></p>
+
+<pre><code>0 492304
+1 497372
+2 486379
+...
+</code></pre>
+
+<h2>
+<a name="soru-3-10-puan" class="anchor" href="#soru-3-10-puan"><span class="octicon octicon-link"></span></a>Soru-3 [10 Puan]</h2>
+
+<p><code>s3n://t2-hackathon-question-data/3</code> dizini altında bulunan tüm tweetler incelenerek <strong>unique</strong> kullanıcı sayısını bulan bir Map/Reduce uygulamasını yazınız. </p>
+
+<p><strong>Açıklamalar:</strong></p>
+
+<ol>
+<li>Kullanıcıyı unique yapan bilgi tweet datasındaki <code>user</code> alanının içindeki <code>id</code> değeridir. </li>
+<li>Çıktıda tek bir satırda unique kullanıcı sayısı değeri olacaktır.</li>
+<li>Örnek girdi verisi <code>s3n://t2-hackathon-question-sampledata/3</code> dizininde, çıktı ise <code>s3n://t2-hackathon-sampleanswers/3/output.txt</code> dosyasında mevcuttur.</li>
+</ol><p><strong>Örnek çıktı:</strong></p>
+
+<pre><code>64098
+</code></pre>
+
+<h2>
+<a name="soru-4-10-puan" class="anchor" href="#soru-4-10-puan"><span class="octicon octicon-link"></span></a>Soru-4 [10 Puan]</h2>
+
+<p><code>s3n://t2-hackathon-question-data/4</code> dizini altında bulunan tüm tweetler incelenerek profil bilgisi parametre geçilen dilde olan tweet sayısını bulan bir Map/Reduce uygulamasını yazınız. </p>
+
+<p><strong>Açıklamalar:</strong></p>
+
+<ol>
+<li>Dil bilgisi tweet datasındaki <code>user</code> alanının içindeki <code>lang</code> değeridir. </li>
+<li>1. parametrenin girdi verisinin dizini, 2. parametrenin çıktı verisinin dizini olduğunu hatırlarsak dil parametresi 3. parametredir. </li>
+<li>Sonuçlar karşılaştırılırken dil parametresi <code>tr</code> (<strong>case-insensitive</strong>) olarak geçilmiş olan sonuçlar ile karşılaştırılacaktır. Fakat aynı zaman da sonucun doğru olması halinde tam puan alabilmek için kod incelemesi de yapılacaktır.</li>
+<li>Çıktıda tek satır bulunacaktır ve bu satırda sadece belirtilen dildeki tweet sayısı belirtilecektir. </li>
+<li>Örnek girdi verisi <code>s3n://t2-hackathon-question-sampledata/4</code> dizininde, çıktı ise <code>s3n://t2-hackathon-sampleanswers/4/output.txt</code> dosyasında mevcuttur.</li>
+</ol><p><strong>Örnek çıktı:</strong></p>
+
+<pre><code>29634
+</code></pre>
+
+<h2>
+<a name="soru-5-10-puan" class="anchor" href="#soru-5-10-puan"><span class="octicon octicon-link"></span></a>Soru-5 [10 Puan]</h2>
+
+<p><code>s3n://t2-hackathon-question-data/5</code> dizini altında bulunan tüm tweetler incelenerek <strong>en büyük</strong> ve <strong>en küçük</strong> kullanıcı <strong>id</strong>'sini bulan bir Map/Reduce uygulamasını yazınız. </p>
+
+<p><strong>Açıklamalar:</strong></p>
+
+<ol>
+<li>Kullanıcı <strong>id</strong>'si tweet datasındaki <code>user</code> alanının içindeki <code>id</code> değeridir. </li>
+<li>Çıktıda iki satır bulunacaktır. 1. satırda <code>MIN &lt;min_id_value&gt;</code>, 2. satırda <code>MAX &lt;max_id_value&gt;</code> değeri olacaktır.</li>
+<li>Çıktıdaki <code>MIN &lt;min_id_value&gt;</code> ve <code>MAX &lt;max_id_value&gt;</code> satırlarındaki iki değer arasında sadece bir tane <strong>boşluk</strong> olacaktır.<br>
+</li>
+<li>Örnek girdi verisi <code>s3n://t2-hackathon-question-sampledata/5</code> dizininde, çıktı ise <code>s3n://t2-hackathon-sampleanswers/5/output.txt</code> dosyasında mevcuttur.</li>
+</ol><p><strong>Örnek çıktı:</strong></p>
+
+<pre><code>MIN 4620
+MAX 2322647593
+</code></pre>
+
+<h2>
+<a name="soru-6-15-puan" class="anchor" href="#soru-6-15-puan"><span class="octicon octicon-link"></span></a>Soru-6 [15 Puan]</h2>
+
+<p><code>s3n://t2-hackathon-question-data/6</code>  dizini altında bulunan tüm tweetler incelenerek profil bilgisi <code>tr</code> (<strong>case-insensitive</strong>) dilinde olan kullanıcılardan popülarite skoru en yüksek olan kullanıcı ve onun skorunu bulan bir Map/Reduce uygulamasını yazınız. </p>
+
+<p><strong>Açıklamalar:</strong></p>
+
+<ol>
+<li>Dil bilgisi tweet datasındaki <code>user</code> alanının içindeki <code>lang</code> değeridir. </li>
+<li>Takipçi sayısı bilgisi tweet datasındaki <code>user</code> alanının içindeki <code>followers_count</code> değeridir. </li>
+<li>Atılan tweet sayısı bilgisi tweet datasındaki <code>user</code> alanının içindeki <code>statuses_count</code> değeridir. </li>
+<li>Tweet içinde bahsedilen (mention'lanan) kullanıcılar tweet datasındaki <code>entities</code> alanının içindeki <code>user_mentions</code> alanındaki kullanıcılardır. </li>
+<li>Skor tweet bazında o tweet atılma anındaki tweeti atan kullanıcı bilgileri kullanılarak <code>&lt;followers_count&gt; * &lt;statuses_count&gt;</code> olarak hesaplanacak ve kullanıcının skoru kendisinden bahsedilen (mention'landığı) tweetlerin skorları toplanarak hesaplanacaktır. Örnegin <strong>A</strong> kullanıcısı attığı bir tweet'de <strong>B</strong> ve <strong>C</strong> kullanıcısından bahsetmiş ise (mention'lamış ise) ve <strong>A</strong> kullanıcısının tweet atılma anında follower sayısı 100 ve tweet sayısı da 1000 ise, o tweet için <strong>B</strong> ve <strong>C</strong> kullanıcılarına <code>100 * 1000</code> = <strong>100000</strong> puan skor olarak eklenecektir. Tweet'i atan A kullanıcısına ise herhangi bir puan eklenmeyecektir.</li>
+<li>Eğer iki kullanıcının popülarite skoru aynı ise, <code>id</code> değeri büyük olan kullanıcının skoru daha büyük olarak kabul edilecektir. </li>
+<li>Çıktıda tek satır bulunacaktır ve popülarite skoru en yüksek olan kullanıcı id'si ve popülarite skoru aralarında bir tane <strong>boşluk</strong> olacak şekilde belirtilecektir. </li>
+<li>Örnek girdi verisi <code>s3n://t2-hackathon-question-sampledata/6</code> dizininde, çıktı ise <code>s3n://t2-hackathon-sampleanswers/6/output.txt</code> dosyasında mevcuttur.</li>
+</ol><p><strong>Örnek çıktı:</strong></p>
+
+<pre><code>252532055 46028061540
+</code></pre>
+
+<h2>
+<a name="soru-7-15-puan" class="anchor" href="#soru-7-15-puan"><span class="octicon octicon-link"></span></a>Soru-7 [15 Puan]</h2>
+
+<p><code>s3n://t2-hackathon-question-data/7</code> dizini altında bulunan tüm tweetler incelenerek değer skoru <strong>en büyük</strong> ve <strong>en küçük</strong> olan kullanıcı <strong>id</strong>'sini ve değer skorunu bulan bir Map/Reduce uygulamasını yazınız. </p>
+
+<p><strong>Açıklamalar:</strong></p>
+
+<ol>
+<li>Kullanıcı <strong>id</strong>'si tweet datasındaki <code>user</code> alanının içindeki <code>id</code> değeridir. </li>
+<li>Bir kullanıcı tweet attığı zaman o kullanıcının değer skoru <strong>1 eksilir</strong>. Bir tweet içinde bir kullanıcıdan bahsedildiğinde ise o kullanıcının değer skoru <strong>1 arttırılır</strong>. Örnegin <strong>A</strong> kullanıcısı attığı bir tweet'de <strong>B</strong> ve <strong>C</strong> kullanıcısından bahsetmiş ise (mention'lamış ise), o tweet için <strong>A</strong> kullanıcısının değer skoru <strong>-1</strong> ile toplanır, <strong>B</strong> ve <strong>C</strong> kullanıcılarının ise değer skoru <strong>+1</strong> ile toplanır.</li>
+<li>Minimum değer karşılaştırması yapılırken eğer iki kullanıcının değer skoru aynı ise, <code>id</code> değeri küçük olan kullanıcının skoru daha küçük olarak kabul edilecektir.</li>
+<li>Maximum değer karşılaştırması yapılırken eğer iki kullanıcının değer skoru aynı ise, <code>id</code> değeri büyük olan kullanıcının skoru daha büyük olarak kabul edilecektir.</li>
+<li>Çıktıda iki satır bulunacaktır. 1. satırda <code>MIN &lt;min_id_value&gt;</code>, 2. satırda <code>MAX &lt;max_id_value&gt;</code> değeri olacaktır.</li>
+<li>Çıktıdaki <code>MIN &lt;min_id_value&gt;</code> ve <code>MAX &lt;max_id_value&gt;</code> satırlarındaki iki değer arasında sadece bir tane <strong>boşluk</strong> olacaktır.<br>
+</li>
+<li>Örnek girdi verisi <code>s3n://t2-hackathon-question-sampledata/7</code> dizininde, çıktı ise <code>s3n://t2-hackathon-sampleanswers/7/output.txt</code> dosyasında mevcuttur.</li>
+</ol><p><strong>Örnek çıktı:</strong></p>
+
+<pre><code>MIN 497145453 -170
+MAX 209708391 796
+</code></pre>
+
+<h2>
+<a name="soru-8-10-puan" class="anchor" href="#soru-8-10-puan"><span class="octicon octicon-link"></span></a>Soru-8 [10 Puan]</h2>
+
+<p><code>s3n://t2-hackathon-question-data/8</code> dizini altında bulunan tüm tweetler incelenerek toplam tweet sayısını bulan bir Map/Reduce uygulamasını yazınız. </p>
+
+<p><strong>Açıklamalar:</strong></p>
+
+<ol>
+<li>Çıktıda tek bir satırda toplam tweet sayısı değeri olacaktır.</li>
+<li>Örnek girdi verisi <code>s3n://t2-hackathon-question-sampledata/8</code> dizininde, çıktı ise <code>s3n://t2-hackathon-sampleanswers/8/output.txt</code> dosyasında mevcuttur.</li>
+</ol><p><strong>Örnek çıktı:</strong></p>
+
+<pre><code>120000
+</code></pre>
+
+<h2>
+<a name="soru-9-20-puan" class="anchor" href="#soru-9-20-puan"><span class="octicon octicon-link"></span></a>Soru-9 [20 Puan]</h2>
+
+<p><code>s3n://t2-hackathon-question-data/9</code> dizini altında bulunan tüm tweetler incelenerek <strong>1. dereceden</strong> ve <strong>2. dereceden</strong> toplam iletişime girdiği kullanıcı sayısı en yüksek olan kullanıcı <strong>id</strong>'sini ve iletişime girdiği kullanıcı sayısını bulan bir Map/Reduce uygulamasını yazınız. </p>
+
+<p><strong>Açıklamalar:</strong></p>
+
+<ol>
+<li>Kullanıcı <strong>id</strong>'si tweet datasındaki <code>user</code> alanının içindeki <code>id</code> değeridir. </li>
+<li>Tweet içinde bahsedilen (mention'lanan) kullanıcılar tweet datasındaki <code>entities</code> alanının içindeki <code>user_mentions</code> alanındaki kullanıcılardır. </li>
+<li>
+<strong>1. dereceden</strong> iletişime girdiği kullanıcılar, kullanıcının tweetlerinde bahsettiği (mention'ladığı) kullanıcılardır. Örnegin <strong>A</strong> kullanıcısı attığı bir tweet'de <strong>B</strong> ve <strong>C</strong> kullanıcısından bahsetmiş ise (mention'lamış ise), <strong>A</strong> kullanıcısı <strong>B</strong> ve <strong>C</strong> kullanıcıları ile iletişime girmiştir ve dolayısıyla iletişime giren kullanıcı çiftleri <code>(A-&gt;B), (A-&gt;C), (B-&gt;A), (C-&gt;A)</code> şeklindedir. Burada dikkat edilmesi gereken nokta iletişimin çift yönlü olduğu ve <strong>B</strong> ve <strong>C</strong> kullanıcısının da <strong>A</strong> ile iletişime girdiğidir.</li>
+<li>
+<strong>2. dereceden</strong> iletişime girdiği kullanıcılar, <strong>1. dereceden</strong> iletişime girdiği kullanıcıların da doğrudan iletişime girdiği kullanıcılardır. Örneğin <strong>A</strong> kullanıcısı <strong>B</strong> ve <strong>C</strong> ile iletişimde, <strong>B</strong> kullanıcısı <strong>C</strong> ve <strong>D</strong> kullanıcısı ile iletişimde, <strong>C</strong> kullanıcısı da <strong>D</strong> ve <strong>E</strong> kullanıcısı ile iletişimde ise <strong>A</strong> kullanıcısı <strong>2. dereceden</strong> <strong>D</strong> ve <strong>E</strong> kullanıcısı ile iletişimdedir. Bunun tersini düşünürsek <strong>D</strong> ve <strong>E</strong> kullanıcısı da <strong>A</strong> kullanıcısı ile 2. dereceden iletişimdedir.</li>
+<li>
+<strong>3</strong>. ve <strong>4.</strong> maddedeki örnekleri dikkate alırsak <strong>A</strong> kullanısının <strong>1.</strong> ve <strong>2.</strong> dereceden iletişime girdiği kullanıcılar <strong>B, C, D ve E</strong> kullanıcılarıdır ve dolayısıyla iletişime girdiği kullanıcı sayısı <strong>4</strong>'tür.</li>
+<li>Eğer iki kullanıcının iletişime girdiği kullanıcı skoru aynı ise, <code>id</code> değeri büyük olan kullanıcının skoru daha büyük olarak kabul edilecektir. </li>
+<li>Çıktıda tek satır bulunacaktır ve iletişimde olduğu kişi sayısı en yüksek olan kullanıcı id'si ve iletişimde olduğu kişi sayısı aralarında bir tane <strong>boşluk</strong> olacak şekilde belirtilecektir. </li>
+<li>Örnek girdi verisi <code>s3n://t2-hackathon-question-sampledata/9</code> dizininde, çıktı ise <code>s3n://t2-hackathon-sampleanswers/9/output.txt</code> dosyasında mevcuttur.</li>
+</ol><p><strong>Örnek çıktı:</strong></p>
+
+<pre><code>1046019948 387
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">T2-hackathon-answers maintained by <a href="https://github.com/serkan-ozal">serkan-ozal</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
