@@ -7,8 +7,9 @@
   
   <properties>
   
-		<aws.accessKey>[Your Access Key]</aws.accessKey>
-		<aws.secretKey>[Your Secret Key]</aws.secretKey>
+		<aws.accessKey>[Your AWS Access Key]</aws.accessKey>
+		<aws.secretKey>[Your AWS Secret Key]</aws.secretKey>
+		<aws.accountNo>[Your AWS Account No]</aws.accountNo>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.6</maven.compiler.source>
@@ -27,7 +28,7 @@
         <mainClass>tr.com.t2.hackathon.answers.Answers</mainClass>
   		<finalName>hackathon-answers-job</finalName>
   		<finalFileName>${finalName}.jar</finalFileName>
-  		<targetBucketName>t2-hackathon-answers</targetBucketName>
+  		<targetBucketName>t2-hackathon-answers-${aws.accountNo}</targetBucketName>
 
 	</properties>
   
