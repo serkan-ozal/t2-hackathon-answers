@@ -25,44 +25,44 @@ import twitter4j.json.DataObjectFactory;
  */
 public class Question5Mapper extends BaseMapper<LongWritable, Text, Text, LongWritable> {
 
-	private Long minId;
-	private Long maxId;
-	private User minIdUser;
-	private User maxIdUser;
-	
-	@Override
+    private Long minId;
+    private Long maxId;
+    private User minIdUser;
+    private User maxIdUser;
+    
+    @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         try {
-        	Status status = DataObjectFactory.createStatus(value.toString());
-        	User user = status.getUser();
-        	if (user != null) {
-        		// If minimum id has been set or current id is smaller than minimum id, set current id as minimum id
-        		if (minId == null || user.getId() < minId) {
-        			minId = user.getId();
-        			minIdUser = user;
-        		}
-        		// If maximum id has been set or current id is bigger than maximum id, set current id as maximum id
-        		if (maxId == null || user.getId() > maxId) {
-        			maxId = user.getId();
-        			maxIdUser = user;
-        		}
-        	}
+            Status status = DataObjectFactory.createStatus(value.toString());
+            User user = status.getUser();
+            if (user != null) {
+                // If minimum id has been set or current id is smaller than minimum id, set current id as minimum id
+                if (minId == null || user.getId() < minId) {
+                    minId = user.getId();
+                    minIdUser = user;
+                }
+                // If maximum id has been set or current id is bigger than maximum id, set current id as maximum id
+                if (maxId == null || user.getId() > maxId) {
+                    maxId = user.getId();
+                    maxIdUser = user;
+                }
+            }
         }
         catch (Throwable t) {
-        	logger.error("Error occured while executing map function of Mapper", t);
+            logger.error("Error occured while executing map function of Mapper", t);
         }
     }
-	
-	@Override
-	protected void cleanup(Context context) throws IOException, InterruptedException {
-		// If minimum id has been found, emit it to reducer assigned for calculating minimum id
-		if (minIdUser != null) {
-			context.write(Question5AnswerJob.MIN_ID_KEY, new LongWritable(minId));
-		}
-		// If maximum id has been found, emit it to reducer assigned for calculating maximum id
-		if (maxIdUser != null) {
-			context.write(Question5AnswerJob.MAX_ID_KEY, new LongWritable(maxId));
-		}
-	}
+    
+    @Override
+    protected void cleanup(Context context) throws IOException, InterruptedException {
+        // If minimum id has been found, emit it to reducer assigned for calculating minimum id
+        if (minIdUser != null) {
+            context.write(Question5AnswerJob.MIN_ID_KEY, new LongWritable(minId));
+        }
+        // If maximum id has been found, emit it to reducer assigned for calculating maximum id
+        if (maxIdUser != null) {
+            context.write(Question5AnswerJob.MAX_ID_KEY, new LongWritable(maxId));
+        }
+    }
 
 }

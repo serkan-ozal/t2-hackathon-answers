@@ -26,21 +26,21 @@ import twitter4j.json.DataObjectFactory;
  */
 public class Question3Mapper extends BaseMapper<LongWritable, Text, LongWritable, IntWritable> {
 
-	private LongWritable ID = new LongWritable();
-	
-	@Override
+    private LongWritable ID = new LongWritable();
+    
+    @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         try {
-        	Status status = DataObjectFactory.createStatus(value.toString());
-        	User user = status.getUser();
-        	if (user != null) {
-        		ID.set(user.getId());
-        		// This is occurred one time for this tweet
-        		context.write(ID, ONE);
-        	}
+            Status status = DataObjectFactory.createStatus(value.toString());
+            User user = status.getUser();
+            if (user != null) {
+                ID.set(user.getId());
+                // This is occurred one time for this tweet
+                context.write(ID, ONE);
+            }
         }
         catch (Throwable t) {
-        	logger.error("Error occured while executing map function of Mapper", t);
+            logger.error("Error occured while executing map function of Mapper", t);
         }
     }
 

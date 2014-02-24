@@ -33,16 +33,16 @@ import tr.com.t2.hackathon.answers.q9.j1.Question9AnswerJob1;
  */
 public class Question9AnswerJob extends BaseAnswerJob {
 
-	private Question9AnswerJob1 job1 = new Question9AnswerJob1();
-	
-	@Override
-	public void doJob(String[] args, Job job, JobConf conf, Path inputPath, Path outputPath) {
-		job1.doJob(args, job, conf, inputPath, outputPath);
-	}
-	
-	@Override
-	public void processResult(String[] args, Job job, JobConf conf, Path inputPath, Path outputPath, String outputFileName) {
-		job1.processResult(args, job, conf, inputPath, outputPath, outputFileName);
-	}
-	
+    private Question9AnswerJob1 job1 = new Question9AnswerJob1();
+    
+    @Override
+    public void doJob(String[] args, Job job, JobConf conf, Path inputPath, Path outputPath) {
+        job1.doJob(args, job, conf, inputPath, outputPath);
+    }
+    
+    @Override
+    public void processResult(String[] args, Job job, JobConf conf, Path inputPath, Path outputPath, String outputFileName) {
+        job1.processResult(args, job, conf, inputPath, outputPath, outputFileName);
+    }
+    
 }

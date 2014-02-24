@@ -26,27 +26,27 @@ import twitter4j.json.DataObjectFactory;
  */
 public class Question9Mapper1 extends BaseMapper<LongWritable, Text, LongWritable, LongWritable> {
 
-	@Override
+    @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         try {
-        	Status status = DataObjectFactory.createStatus(value.toString());
-        	User user = status.getUser();
-        	if (user != null) {
-        		Long userId = user.getId();
-        		if (userId != null && userId != 0) {
-        			UserMentionEntity[] userMentions = status.getUserMentionEntities();
-        			if (userMentions != null) {
-        				// Emit first levels as bidirectional
-        				for (UserMentionEntity um : userMentions) {
-        					context.write(new LongWritable(userId), new LongWritable(um.getId()));
-        					context.write(new LongWritable(um.getId()), new LongWritable(userId));
-        				}
-        			}
-        		}
-        	}	
+            Status status = DataObjectFactory.createStatus(value.toString());
+            User user = status.getUser();
+            if (user != null) {
+                Long userId = user.getId();
+                if (userId != null && userId != 0) {
+                    UserMentionEntity[] userMentions = status.getUserMentionEntities();
+                    if (userMentions != null) {
+                        // Emit first levels as bidirectional
+                        for (UserMentionEntity um : userMentions) {
+                            context.write(new LongWritable(userId), new LongWritable(um.getId()));
+                            context.write(new LongWritable(um.getId()), new LongWritable(userId));
+                        }
+                    }
+                }
+            }   
         }
         catch (Throwable t) {
-        	logger.error("Error occured while executing map function of Mapper", t);
+            logger.error("Error occured while executing map function of Mapper", t);
         }
     }
 

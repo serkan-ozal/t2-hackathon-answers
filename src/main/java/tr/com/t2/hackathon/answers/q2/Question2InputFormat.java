@@ -26,18 +26,18 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
  */
 public class Question2InputFormat extends FileInputFormat<LongWritable, Question2Data> {
 
-	  @Override
-	  public RecordReader<LongWritable, Question2Data> createRecordReader(InputSplit split, TaskAttemptContext context) {
-		  return new Question2RecordReader();
-	  }
+      @Override
+      public RecordReader<LongWritable, Question2Data> createRecordReader(InputSplit split, TaskAttemptContext context) {
+          return new Question2RecordReader();
+      }
 
-	  @Override
-	  protected boolean isSplitable(JobContext context, Path file) {
-		  final CompressionCodec codec = new CompressionCodecFactory(context.getConfiguration()).getCodec(file);
-		  if (null == codec) {
-			  return true;
-		  }
-		  return codec instanceof SplittableCompressionCodec;
-	  }
-	  
+      @Override
+      protected boolean isSplitable(JobContext context, Path file) {
+          final CompressionCodec codec = new CompressionCodecFactory(context.getConfiguration()).getCodec(file);
+          if (null == codec) {
+              return true;
+          }
+          return codec instanceof SplittableCompressionCodec;
+      }
+      
 }

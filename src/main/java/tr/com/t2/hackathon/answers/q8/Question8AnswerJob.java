@@ -25,21 +25,21 @@ import tr.com.t2.hackathon.answers.io.LineInputFormat;
  */
 public class Question8AnswerJob extends BaseAnswerJob {
 
-	@Override
-	public void doJob(String[] args, Job job, JobConf conf, Path inputPath, Path outputPath) {
-		job.setJobName("Question 8");
-		
-		job.setMapOutputKeyClass(NullWritable.class);
-		job.setMapOutputValueClass(LongWritable.class);
-		
-		job.setOutputKeyClass(NullWritable.class);
-		job.setOutputValueClass(LongWritable.class);
-		 
-		job.setMapperClass(Question8Mapper.class);
-		job.setReducerClass(Question8Reducer.class);
+    @Override
+    public void doJob(String[] args, Job job, JobConf conf, Path inputPath, Path outputPath) {
+        job.setJobName("Question 8");
+        
+        job.setMapOutputKeyClass(NullWritable.class);
+        job.setMapOutputValueClass(LongWritable.class);
+        
+        job.setOutputKeyClass(NullWritable.class);
+        job.setOutputValueClass(LongWritable.class);
+         
+        job.setMapperClass(Question8Mapper.class);
+        job.setReducerClass(Question8Reducer.class);
 
-		job.setInputFormatClass(LineInputFormat.class);
-		job.setOutputFormatClass(TextOutputFormat.class);
-	}
+        job.setInputFormatClass(LineInputFormat.class);
+        job.setOutputFormatClass(TextOutputFormat.class);
+    }
 
 }

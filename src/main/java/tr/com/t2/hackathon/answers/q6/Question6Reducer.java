@@ -22,20 +22,20 @@ import tr.com.t2.hackathon.answers.Answers.BaseReducer;
 public class Question6Reducer extends BaseReducer<LongWritable, MentionedTweetData, LongWritable, LongWritable> {
 
     protected void reduce(LongWritable key, Iterable<MentionedTweetData> values, Context context) throws IOException, InterruptedException {
-		try {
-			long score = 0;
-			// Calculate score of current mentioned user
-			for (MentionedTweetData value : values) {
-				score += 
-						(
-							value.getSenderTweetCount() * value.getSenderFollowerCount()
-						);
-			}
-			// Emit score of current mentioned user
-			context.write(key, new LongWritable(score));
-		}
+        try {
+            long score = 0;
+            // Calculate score of current mentioned user
+            for (MentionedTweetData value : values) {
+                score += 
+                        (
+                            value.getSenderTweetCount() * value.getSenderFollowerCount()
+                        );
+            }
+            // Emit score of current mentioned user
+            context.write(key, new LongWritable(score));
+        }
         catch (Throwable t) {
-        	logger.error("Error occured while executing reduce function of Reducer", t);
+            logger.error("Error occured while executing reduce function of Reducer", t);
         }    
     }
     

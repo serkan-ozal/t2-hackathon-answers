@@ -26,24 +26,24 @@ import tr.com.t2.hackathon.answers.Answers.BaseReducer;
 public class Question9Reducer1 extends BaseReducer<LongWritable, LongWritable, LongWritable, Text> {
 
     protected void reduce(LongWritable key, Iterable<LongWritable> values, Context context) throws IOException, InterruptedException {
-		try {
-			Iterator<LongWritable> i = values.iterator();
-			Set<Long> idSet = new HashSet<Long>();
-			// Find unique first level connections
-			while (i.hasNext()) {
-				idSet.add(i.next().get());
-			}
-			int count = idSet.size();
-			StringBuilder sb = new StringBuilder(count * 10); // Id can contain 9-10 digits at maximum
-			// Build all first level connection ids
-			for (Long id : idSet) {
-				sb.append(id).append(" ");
-			}
-			// Emit all first level connection ids with their count
-			context.write(key, new Text(count + " " + sb.toString()));
-		}
+        try {
+            Iterator<LongWritable> i = values.iterator();
+            Set<Long> idSet = new HashSet<Long>();
+            // Find unique first level connections
+            while (i.hasNext()) {
+                idSet.add(i.next().get());
+            }
+            int count = idSet.size();
+            StringBuilder sb = new StringBuilder(count * 10); // Id can contain 9-10 digits at maximum
+            // Build all first level connection ids
+            for (Long id : idSet) {
+                sb.append(id).append(" ");
+            }
+            // Emit all first level connection ids with their count
+            context.write(key, new Text(count + " " + sb.toString()));
+        }
         catch (Throwable t) {
-        	logger.error("Error occured while executing reduce function of Reducer", t);
+            logger.error("Error occured while executing reduce function of Reducer", t);
         }    
     }
 

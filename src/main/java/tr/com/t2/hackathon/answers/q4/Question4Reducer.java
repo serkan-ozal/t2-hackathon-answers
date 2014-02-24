@@ -24,17 +24,17 @@ import tr.com.t2.hackathon.answers.Answers.BaseReducer;
 public class Question4Reducer extends BaseReducer<NullWritable, IntWritable, NullWritable, IntWritable> {
 
     protected void reduce(NullWritable key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-		try {
-			int sum = 0;
-			Iterator<IntWritable> i = values.iterator();
-			// Calculate count of emitted tweets
-			while (i.hasNext()) {
-				sum += i.next().get();
-			}
-			context.write(key, new IntWritable(sum));
-		}
+        try {
+            int sum = 0;
+            Iterator<IntWritable> i = values.iterator();
+            // Calculate count of emitted tweets
+            while (i.hasNext()) {
+                sum += i.next().get();
+            }
+            context.write(key, new IntWritable(sum));
+        }
         catch (Throwable t) {
-        	logger.error("Error occured while executing reduce function of Reducer", t);
+            logger.error("Error occured while executing reduce function of Reducer", t);
         }    
     }
 

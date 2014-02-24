@@ -23,11 +23,11 @@ import tr.com.t2.hackathon.answers.Answers.BaseReducer;
 public class Question3Reducer extends BaseReducer<LongWritable, IntWritable, LongWritable, IntWritable> {
 
     protected void reduce(LongWritable key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-		try {
-			context.write(key, ONE);
-		}
+        try {
+            context.write(key, ONE);
+        }
         catch (Throwable t) {
-        	logger.error("Error occured while executing reduce function of Reducer", t);
+            logger.error("Error occured while executing reduce function of Reducer", t);
         }    
     }
 

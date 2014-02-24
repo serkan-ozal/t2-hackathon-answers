@@ -27,29 +27,29 @@ import twitter4j.json.DataObjectFactory;
  */
 public class Question6Mapper extends BaseMapper<LongWritable, Text, LongWritable, MentionedTweetData> {
 
-	@Override
+    @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         try {
-        	Status status = DataObjectFactory.createStatus(value.toString());
-        	User user = status.getUser();
-        	if (user != null) {
-        		Long userId = user.getId();
-        		String lang = user.getLang();
-        		// If sender of current tweet has "tr" language profile
-        		if (userId != null && userId != 0 && StringUtils.isEmpty(lang) == false && lang.equalsIgnoreCase("tr")) {
-        			UserMentionEntity[] userMentions = status.getUserMentionEntities();
-        			if (userMentions != null) {
-        				// Emit MentionedTweetData structure with tweet and followers count of sender user for all mentioned users
-        				for (UserMentionEntity um : userMentions) {
-        					context.write(new LongWritable(um.getId()), 
-        							new MentionedTweetData(userId, user.getStatusesCount(), user.getFollowersCount(), um.getId()));
-        				}
-        			}
-        		}
-        	}
+            Status status = DataObjectFactory.createStatus(value.toString());
+            User user = status.getUser();
+            if (user != null) {
+                Long userId = user.getId();
+                String lang = user.getLang();
+                // If sender of current tweet has "tr" language profile
+                if (userId != null && userId != 0 && StringUtils.isEmpty(lang) == false && lang.equalsIgnoreCase("tr")) {
+                    UserMentionEntity[] userMentions = status.getUserMentionEntities();
+                    if (userMentions != null) {
+                        // Emit MentionedTweetData structure with tweet and followers count of sender user for all mentioned users
+                        for (UserMentionEntity um : userMentions) {
+                            context.write(new LongWritable(um.getId()), 
+                                    new MentionedTweetData(userId, user.getStatusesCount(), user.getFollowersCount(), um.getId()));
+                        }
+                    }
+                }
+            }
         }
         catch (Throwable t) {
-        	logger.error("Error occured while executing map function of Mapper", t);
+            logger.error("Error occured while executing map function of Mapper", t);
         }
     }
 

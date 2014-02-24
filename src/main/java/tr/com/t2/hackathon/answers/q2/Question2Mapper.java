@@ -21,14 +21,14 @@ import tr.com.t2.hackathon.answers.Answers.BaseMapper;
  */
 public class Question2Mapper extends BaseMapper<LongWritable, Question2Data, LongWritable, LongWritable> {
 
-	@Override
+    @Override
     protected void map(LongWritable key, Question2Data value, Context context) throws IOException, InterruptedException {
         try {
-        	// Emit group id as key and amount as value
-        	context.write(new LongWritable(value.getGroupId()), new LongWritable(value.getAmount()));
+            // Emit group id as key and amount as value
+            context.write(new LongWritable(value.getGroupId()), new LongWritable(value.getAmount()));
         }
         catch (Throwable t) {
-        	logger.error("Error occured while executing map function of Mapper", t);
+            logger.error("Error occured while executing map function of Mapper", t);
         }
     }
 

@@ -15,32 +15,32 @@ package tr.com.t2.hackathon.answers.q2;
  */
 public class Question2Data {
 
-	private long groupId;
-	private long amount;
-	
-	public Question2Data() {
-		
-	}
-	
-	public Question2Data(long groupId, long amount) {
-		this.groupId = groupId;
-		this.amount = amount;
-	}
+    private long groupId;
+    private long amount;
+    
+    public Question2Data() {
+        
+    }
+    
+    public Question2Data(long groupId, long amount) {
+        this.groupId = groupId;
+        this.amount = amount;
+    }
 
-	public long getGroupId() {
-		return groupId;
-	}
+    public long getGroupId() {
+        return groupId;
+    }
 
-	public void setGroupId(long groupId) {
-		this.groupId = groupId;
-	}
+    public void setGroupId(long groupId) {
+        this.groupId = groupId;
+    }
 
-	public long getAmount() {
-		return amount;
-	}
+    public long getAmount() {
+        return amount;
+    }
 
-	public void setAmount(long amount) {
-		this.amount = amount;
-	}
-	
+    public void setAmount(long amount) {
+        this.amount = amount;
+    }
+    
 }

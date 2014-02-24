@@ -23,31 +23,31 @@ import org.apache.log4j.Logger;
  */
 public class LineRecordReader extends org.apache.hadoop.mapreduce.lib.input.LineRecordReader {
 
-	protected final Logger logger = Logger.getLogger(getClass());
-	
-	private Path file;
-	
-	public LineRecordReader() {
-		
-	}
+    protected final Logger logger = Logger.getLogger(getClass());
+    
+    private Path file;
+    
+    public LineRecordReader() {
+        
+    }
 
-	public LineRecordReader(byte[] recordDelimiter) {
-	    super(recordDelimiter);
-	}
-	
-	public void initialize(InputSplit genericSplit, TaskAttemptContext context) throws IOException {
-		super.initialize(genericSplit, context);
-		file = ((FileSplit)genericSplit).getPath();
-	}	
-		
-	public boolean nextKeyValue() throws IOException {
-		try {
-			return super.nextKeyValue();
-		}
-		catch (Throwable t) {
-			logger.error("Error while getting next key-value for file " + file.getName(), t);
-			throw new IOException("Error while getting next key-value for file " + file.getName(), t);
-		}
-	}
-	
+    public LineRecordReader(byte[] recordDelimiter) {
+        super(recordDelimiter);
+    }
+    
+    public void initialize(InputSplit genericSplit, TaskAttemptContext context) throws IOException {
+        super.initialize(genericSplit, context);
+        file = ((FileSplit)genericSplit).getPath();
+    }   
+        
+    public boolean nextKeyValue() throws IOException {
+        try {
+            return super.nextKeyValue();
+        }
+        catch (Throwable t) {
+            logger.error("Error while getting next key-value for file " + file.getName(), t);
+            throw new IOException("Error while getting next key-value for file " + file.getName(), t);
+        }
+    }
+    
 }

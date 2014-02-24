@@ -25,18 +25,18 @@ import tr.com.t2.hackathon.answers.Answers.BaseReducer;
 public class Question1Reducer extends BaseReducer<Text, IntWritable, Text, LongWritable> {
 
     protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-		try {
-			int sum = 0;
-			Iterator<IntWritable> i = values.iterator();
-			// Calculate count of tweets with specific country code for key
-			while (i.hasNext()) {
-				sum += i.next().get();
-			}
-			// Emit country code and its occurrence value
-			context.write(key, new LongWritable(sum));
-		}
+        try {
+            int sum = 0;
+            Iterator<IntWritable> i = values.iterator();
+            // Calculate count of tweets with specific country code for key
+            while (i.hasNext()) {
+                sum += i.next().get();
+            }
+            // Emit country code and its occurrence value
+            context.write(key, new LongWritable(sum));
+        }
         catch (Throwable t) {
-        	logger.error("Error occured while executing reduce function of Reducer", t);
+            logger.error("Error occured while executing reduce function of Reducer", t);
         }    
     }
 
