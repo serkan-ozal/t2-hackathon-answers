@@ -73,7 +73,7 @@ Herkesin kendi dizinlerinin altında **answers** ve **src** diye alt dizinler va
 
 **[13].** Soruların örnek veriler üstündeki cevaplarına `https://s3.amazonaws.com/t2-hackathon-sampleanswers/<soru_no>/output.txt` adresinden erişilebilir. Örneğin **1.** sorunun örnek veriler üstündeki cevabına [https://s3.amazonaws.com/t2-hackathon-sampleanswers/1/output.txt](https://s3.amazonaws.com/t2-hackathon-sampleanswers/1/output.txt) adresinden erişilebilir.
 
-**[14].** Soruların gerçek veriler üstündeki cevaplarına `https://s3.amazonaws.com/t2-bigdata-hackathon-answers/<soru_no>/output.txt` adresinden erişilebilir. Örneğin **1.** sorunun gerçek veriler üstündeki cevabına [https://s3.amazonaws.com/t2-bigdata-hackathon-answers/1/output.txt](https://s3.amazonaws.com/t2-bigdata-hackathon-answers/1/output.txt) adresinden erişilebilir.
+**[14].** Soruların gerçek veriler üstündeki cevaplarına `https://s3-us-west-2.amazonaws.com/t2-bigdata-hackathon-answers/<soru_no>/output.txt` adresinden erişilebilir. Örneğin **1.** sorunun gerçek veriler üstündeki cevabına [https://s3-us-west-2.amazonaws.com/t2-bigdata-hackathon-answers/1/output.txt](https://s3-us-west-2.amazonaws.com/t2-bigdata-hackathon-answers/1/output.txt) adresinden erişilebilir.
 
 
 
