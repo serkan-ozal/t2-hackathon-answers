@@ -21,6 +21,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
@@ -40,7 +41,7 @@ public class Question3AnswerJob extends BaseAnswerJob {
         job.setMapOutputKeyClass(LongWritable.class);
         job.setMapOutputValueClass(IntWritable.class);
         
-        job.setOutputKeyClass(LongWritable.class);
+        job.setOutputKeyClass(NullWritable.class);
         job.setOutputValueClass(IntWritable.class);
          
         job.setMapperClass(Question3Mapper.class);
@@ -61,9 +62,10 @@ public class Question3AnswerJob extends BaseAnswerJob {
             String line = null;
             int lineCount = 0;
             // Count lines
-            while ((line = br.readLine()) != null) { // Each line represents an unique user
-                if (line.trim().length() > 0) {
-                    lineCount++;
+            while ((line = br.readLine()) != null) { // Each line represents reducer local unique user count
+                line = line.trim();
+                if (line.length() > 0) {
+                    lineCount += Integer.parseInt(line);
                 }   
             }
             is.close();
