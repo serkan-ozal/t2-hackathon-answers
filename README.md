@@ -26,6 +26,13 @@ Deploy sonucu size ait olan Map/Reduce job jar dosyası `t2-hackathon-answers-[Y
 
 **5.** Çözümler Hadoop 2 - YARN ile yapıldığı için Map/Reduce job jar'ını AWS üstünde **AMI version 3.0.3** ve **Hadoop version 2.2.0** ile çalıştırmanız gerekmektedir.
 
+**6.** Map/Reduce job jar'ının çalıştırılması için gerekli argümanlar:
+
+1. **Girdi dizini:** İşlenecek tweet verilerini tutan dizin
+2. **Çıktı dizini:** Sonucun yazılacağı dizin
+3. **Soru no:** Çalıştırılacak sorunun numarası [1, ..., 9]
+
+
 Açıklamalar
 -----------
 
@@ -37,7 +44,7 @@ Açıklamalar
 
 **[4].** Yaklaşık **300 MB** lık örnek girdi verisi `s3n://t2-hackathon-question-sampledata/<soru_no>` dizinlerinde bulunmaktadır. Örneğin 1. sorunun örnek veri seti `s3n://t2-hackathon-question-sampledata/1` dizinindeki tüm dosyalardır.
 
-**[5].** 2. parametre olan çıktı verisi dizinini çalışan Map/Reduce uygulamasının sonucunun yazıldığı dizindir.
+**[5].** 2. parametre olan çıktı verisi dizin, çalışan Map/Reduce uygulamasının sonucunun yazıldığı dizindir.
 
 **[6].** Çözdüğünüz soruların cevaplarını e-mail adreslerinize mail olarak gönderilen kullanıcı adı ve şifre ile [https://t2-bigdata-hackathon.signin.aws.amazon.com/console](https://t2-bigdata-hackathon.signin.aws.amazon.com/console) adresinden giriş yaparak kendi dizininize yüklemeniz gerekmektedir. AWS bilgilerini gönderip hala mail alamayan arkadaşlar lütfen benim ile (serkan.ozal@t2.com.tr) iletişime geçsinler. 
 
