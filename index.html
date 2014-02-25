@@ -58,7 +58,16 @@
 
 <p><strong>5.</strong> Çözümler Hadoop 2 - YARN ile yapıldığı için Map/Reduce job jar'ını AWS üstünde <strong>AMI version 3.0.3</strong> ve <strong>Hadoop version 2.2.0</strong> ile çalıştırmanız gerekmektedir.</p>
 
-<h2>
+<p><strong>6.</strong> Map/Reduce job jar'ının çalıştırılması için gerekli argümanlar:</p>
+
+<ol>
+<li>
+<strong>Girdi dizini:</strong> İşlenecek tweet verilerini tutan dizin</li>
+<li>
+<strong>Çıktı dizini:</strong> Sonucun yazılacağı dizin</li>
+<li>
+<strong>Soru no:</strong> Çalıştırılacak sorunun numarası [1, ..., 9]</li>
+</ol><h2>
 <a name="a%C3%A7%C4%B1klamalar" class="anchor" href="#a%C3%A7%C4%B1klamalar"><span class="octicon octicon-link"></span></a>Açıklamalar</h2>
 
 <p><strong>[1].</strong> Tüm Map/Reduce uygulamaları girdi verisi dizinini ve çıktı verisi dizinini programlarına argüman olarak alacaktır.</p>
@@ -69,7 +78,7 @@
 
 <p><strong>[4].</strong> Yaklaşık <strong>300 MB</strong> lık örnek girdi verisi <code>s3n://t2-hackathon-question-sampledata/&lt;soru_no&gt;</code> dizinlerinde bulunmaktadır. Örneğin 1. sorunun örnek veri seti <code>s3n://t2-hackathon-question-sampledata/1</code> dizinindeki tüm dosyalardır.</p>
 
-<p><strong>[5].</strong> 2. parametre olan çıktı verisi dizinini çalışan Map/Reduce uygulamasının sonucunun yazıldığı dizindir.</p>
+<p><strong>[5].</strong> 2. parametre olan çıktı verisi dizin, çalışan Map/Reduce uygulamasının sonucunun yazıldığı dizindir.</p>
 
 <p><strong>[6].</strong> Çözdüğünüz soruların cevaplarını e-mail adreslerinize mail olarak gönderilen kullanıcı adı ve şifre ile <a href="https://t2-bigdata-hackathon.signin.aws.amazon.com/console">https://t2-bigdata-hackathon.signin.aws.amazon.com/console</a> adresinden giriş yaparak kendi dizininize yüklemeniz gerekmektedir. AWS bilgilerini gönderip hala mail alamayan arkadaşlar lütfen benim ile (<a href="mailto:serkan.ozal@t2.com.tr">serkan.ozal@t2.com.tr</a>) iletişime geçsinler. </p>
 
