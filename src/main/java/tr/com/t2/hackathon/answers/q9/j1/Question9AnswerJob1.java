@@ -30,8 +30,6 @@ import tr.com.t2.hackathon.answers.Answers.BaseAnswerJob;
 import tr.com.t2.hackathon.answers.io.LineInputFormat;
 import tr.com.t2.hackathon.answers.q9.j2.Question9AnswerJob2;
 
-
-
 /**
  * @author Serkan OZAL
  */
