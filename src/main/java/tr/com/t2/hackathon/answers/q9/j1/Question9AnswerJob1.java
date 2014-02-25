@@ -55,6 +55,8 @@ public class Question9AnswerJob1 extends BaseAnswerJob {
     @Override
     public void processResult(String[] args, Job job, JobConf conf, Path inputPath, Path outputPath, String outputFileName) {
         try {
+        	Thread.sleep(60 * 1000); // One minute :)
+        	
             // Copy content of current output directory to sub-folder "/1/" under output directory 
             FileSystem fs = outputPath.getFileSystem(conf);
             FileStatus[] fileStatusList = fs.listStatus(outputPath);
@@ -67,7 +69,9 @@ public class Question9AnswerJob1 extends BaseAnswerJob {
                         FileUtil.copy(fs, filePath, fs, new Path(outputDir), false, conf);
                     }   
                 }
-            }   
+            }  
+            
+            Thread.sleep(60 * 1000); // One minute :)
             
             //////////////////////////////////////////////////////////////
             
@@ -125,7 +129,11 @@ public class Question9AnswerJob1 extends BaseAnswerJob {
             
             //////////////////////////////////////////////////////////////
             
+            Thread.sleep(60 * 1000); // One minute :)
+            
             newJob.waitForCompletion(true);
+            
+            Thread.sleep(60 * 1000); // One minute :)
             
             //////////////////////////////////////////////////////////////
             
