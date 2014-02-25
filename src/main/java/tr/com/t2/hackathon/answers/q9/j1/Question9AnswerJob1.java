@@ -55,7 +55,7 @@ public class Question9AnswerJob1 extends BaseAnswerJob {
     @Override
     public void processResult(String[] args, Job job, JobConf conf, Path inputPath, Path outputPath, String outputFileName) {
         try {
-        	Thread.sleep(60 * 1000); // One minute :)
+            Thread.sleep(60 * 1000); // One minute :)
         	
             // Copy content of current output directory to sub-folder "/1/" under output directory 
             FileSystem fs = outputPath.getFileSystem(conf);
