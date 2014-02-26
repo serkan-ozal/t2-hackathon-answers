@@ -44,9 +44,6 @@ public class Answers {
 
     private static final Logger logger = Logger.getLogger(Answers.class);
     
-    public static final String HACKATHON_INPUT_BUCKET = "s3n://t2-hackathon-sampledata";
-    public static final String HACKATHON_OUTPUT_BUCKET = "s3n://t2-hackathon-answers";
-    
     public static final String KEY_VALUE_SEPARATOR = " ";
     
     enum MemoryType {
